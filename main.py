@@ -6,9 +6,9 @@ from aiogram import Bot, Dispatcher
 
 load_dotenv()
 
-BOT_TOKEN = os.getenv("8716431132:AAGvQBMGUl4HrVdamxmYZFjTOVFVcoi_Dlo")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-bot = Bot(token=8716431132:AAGvQBMGUl4HrVdamxmYZFjTOVFVcoi_Dlo)
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
