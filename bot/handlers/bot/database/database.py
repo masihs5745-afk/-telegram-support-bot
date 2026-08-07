@@ -79,3 +79,14 @@ async def get_orders_count():
 
         result = await cursor.fetchone()
         return result[0]
+
+
+async def get_all_users():
+    async with aiosqlite.connect(DB_NAME) as db:
+        cursor = await db.execute(
+            "SELECT user_id FROM users"
+        )
+
+        users = await cursor.fetchall()
+
+        return [user[0] for user in users]
