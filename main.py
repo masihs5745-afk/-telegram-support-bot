@@ -1,5 +1,5 @@
 import asyncio
-
+from bot.handlers.order import router as order_router
 from aiogram import Bot, Dispatcher
 
 from bot.config import BOT_TOKEN
@@ -11,7 +11,7 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 dp.include_router(start_router)
-
+dp.include_router(order_router)
 
 async def main():
     await create_db()
