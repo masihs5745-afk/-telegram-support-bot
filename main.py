@@ -1,9 +1,10 @@
 import asyncio
-from bot.handlers.order import router as order_router
+
 from aiogram import Bot, Dispatcher
 
 from bot.config import BOT_TOKEN
 from bot.handlers.start import router as start_router
+from bot.handlers.order import router as order_router
 from bot.database.database import create_db
 
 
