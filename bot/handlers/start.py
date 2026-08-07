@@ -1,3 +1,4 @@
+from bot.keyboards.main_menu import main_menu
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
@@ -30,6 +31,7 @@ async def start_handler(message: Message):
     )
 
     await message.answer(
-        "سلام 👋\n"
-        "به ربات خوش آمدید."
-    )
+    "سلام 👋\n"
+    "به ربات خوش آمدید.",
+    reply_markup=main_menu()
+)
