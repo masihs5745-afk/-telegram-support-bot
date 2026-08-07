@@ -4,6 +4,7 @@ from aiogram.filters import Text
 from aiogram.fsm.context import FSMContext
 
 from bot.utils.states import OrderState
+from bot.database.database import add_order
 
 
 router = Router()
@@ -44,11 +45,15 @@ async def get_phone(message: Message, state: FSMContext):
 async def get_description(message: Message, state: FSMContext):
     data = await state.get_data()
 
+    await add_order(
+        user_id=message.from_user.id,
+        name=data["name"],
+        phone=data["phone"],
+        description=message.text
+    )
+
     await message.answer(
-        "✅ سفارش شما ثبت شد.\n\n"
-        f"نام: {data['name']}\n"
-        f"شماره تماس: {data['phone']}\n"
-        f"توضیحات: {message.text}"
+        "✅ سفارش شما با موفقیت ثبت شد."
     )
 
     await state.clear()
