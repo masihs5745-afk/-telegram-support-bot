@@ -32,11 +32,13 @@ async def add_user(user_id: int, full_name: str, username: str):
     async with aiosqlite.connect(DB_NAME) as db:
         await db.execute(
             """
-            INSERT OR IGNORE INTO users (user_id, full_name, username)
+            INSERT OR IGNORE INTO users
+            (user_id, full_name, username)
             VALUES (?, ?, ?)
             """,
             (user_id, full_name, username)
         )
+
         await db.commit()
 
 
@@ -55,4 +57,25 @@ async def add_order(
             """,
             (user_id, name, phone, description)
         )
+
         await db.commit()
+
+
+async def get_users_count():
+    async with aiosqlite.connect(DB_NAME) as db:
+        cursor = await db.execute(
+            "SELECT COUNT(*) FROM users"
+        )
+
+        result = await cursor.fetchone()
+        return result[0]
+
+
+async def get_orders_count():
+    async with aiosqlite.connect(DB_NAME) as db:
+        cursor = await db.execute(
+            "SELECT COUNT(*) FROM orders"
+        )
+
+        result = await cursor.fetchone()
+        return result[0]
