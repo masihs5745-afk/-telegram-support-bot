@@ -1,0 +1,9 @@
+services:
+  - type: worker
+    name: mohreh-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: 8716431132:AAGvQBMGUl4HrVdamxmYZFjTOVFVcoi_Dlo
+        sync: false
